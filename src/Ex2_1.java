@@ -98,7 +98,9 @@ public class Ex2_1
             threadArray [i] = t1;
             try
             {
-               t1.start();
+             t1.start();
+
+               System.out.println("thread num :"+ i);
             }
             catch (Exception e)
             {
@@ -115,15 +117,17 @@ public class Ex2_1
         {
              try
              {
-                 threadArray[i].join();
-                 sum = sum + threadArray[i].getlines();
+               //  threadArray[i].join();
+             //    sum = sum + threadArray[i].getlines();
+                 System.out.println("sum: "+ sum);
+
              }
              catch (Exception e)
              {
                  System.err.println("eroor in join");
              }
         }
-        System.out.println(sum);
+        System.out.println("sum = "+sum);
         long finish_time = System.currentTimeMillis();
         long total_time = finish_time - start_time;
         System.out.println("total time for method 3: " + total_time + "ms");

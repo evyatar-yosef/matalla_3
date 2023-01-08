@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.concurrent.Callable;
 
 public class GetLineThread extends Thread
 {
@@ -37,9 +38,14 @@ public class GetLineThread extends Thread
         }
         numOfLines = count;
         //System.out.println("num of lines: "+ count);
+        //return count;
 
     }
 
 
+//    public int start() {
+//        int x =call();
+//        return x;
+//    }
 }
 

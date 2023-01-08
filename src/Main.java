@@ -3,13 +3,13 @@ import java.io.IOException;
 public class Main
 {
     public static void main(String[] args) throws Exception {
-           Ex2_1 ex1 = new Ex2_1();
+        Ex2_1 ex1 = new Ex2_1();
            String test [] = new String[5];
-           test = Ex2_1.createTextFiles(200,500,50000);
+           test = Ex2_1.createTextFiles(15,500,100);
         Ex2_1.getNumOfLines(test);
 
-        Ex2_1.getNumOfLinesThreadPool(test);
-           Ex2_1.getNumOfLinesThreads(test);
+       // Ex2_1.getNumOfLinesThreadPool(test);
+        Ex2_1.getNumOfLinesThreads(test);
 
        // long start_time = System.currentTimeMillis();
         // for run method 2.
