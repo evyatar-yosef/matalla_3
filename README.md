@@ -19,11 +19,13 @@ the method use GetLinePoolThread that implements Callable interface and implemen
 
 * each method also calculate the amount of time it took for the counting to preformed.
 
-##Comparison of times:
+## Comparison of times:
+<img width="425" alt="צילום מסך 2023-01-09 212819" src="https://user-images.githubusercontent.com/117945522/211394406-9abc1383-91d0-42a0-8c02-5a11129f21d0.png">
+
 
 
 ## diagram:
-![diagram part a task 3](https://user-images.githubusercontent.com/117945522/211388685-963e6342-9363-4234-a3ca-13ba7ee9be2a.png)
+![diagram part a task 3](https://user-images.githubusercontent.com/117945522/211389290-fcaabfea-f3c3-4c91-9819-e0709a33d43d.png)
 
 
 
