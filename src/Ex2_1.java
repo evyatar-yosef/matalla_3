@@ -10,28 +10,38 @@ import java.util.concurrent.*;
 
 public class Ex2_1
 {
+    /**
+     * The function creates text files on disk and returns an array
+     * of the file names, containing at least 10 characters.
+     * @param n - number of text files.
+     * @param seed - a positive integer that initializes a random-number generator.
+     * @param bound - use Returns a pseudorandom, uniformly distributed int value between 0 (inclusive) and the specified value.
+     * @return array of the files names.
+     * @throws IOException
+     */
     public static String[] createTextFiles(int n, int seed, int bound) throws IOException
     {
-        Random rand = new Random(seed);
-        String file_name[] = new String[n];
+        Random rand = new Random(seed); //create random int
+        String file_name[] = new String[n]; // define array size n for the files names.
         for (int i = 0; i < n; i++)
         {
-            File file1 = new File("C:\\Users\\97252\\Desktop\\classes b\\oop\\matala_3\\" + "file_"+(i+1)+".txt");
+            File file1 = new File("C:\\Users\\97252\\Desktop\\classes b\\oop\\" +
+                    "matala_3\\" + "file_"+(i+1)+".txt");// create paths for the n new files.
             try
             {
-                file1.createNewFile();
-                //System.out.println(file1.getAbsolutePath());
-                file_name[i] = file1.getAbsolutePath();
+                file1.createNewFile(); //create new file
+                file_name[i] = file1.getAbsolutePath();// insert the new file in the array.
 
+                // write x lines in the file.
                 FileWriter fw = new FileWriter( file_name[i]);
                 PrintWriter pw = new PrintWriter(fw);
                 int x = rand.nextInt(bound);
                 String s = "hello world";
-                for (int j = 0; j <x ; j++)
+                for (int j = 0; j < x ; j++)
                 {
                     pw.println(s);
                 }
-                //System.out.println("file num "+i+"created");
+
                 pw.println(s);
                 pw.close();
                 fw.close();
@@ -39,62 +49,69 @@ public class Ex2_1
             }
             catch (IOException e)
             {
-                System.err.println("asasass");
+                System.err.println("error");
             }
-        }
+       }
 
-       //GetLineThread g1 = new GetLineThread();
-        //int c = getNumOfLines(file_name);
-
-
-        return file_name;
+        return file_name; // return the array
 
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * this method returns the total sum of the files lines.
+     * @param fileNames - array of the files names.
+     * @return the num of lines in the files created in the createTextFiles method.
+     */
     public static int getNumOfLines(String[] fileNames)
     {
-        long start_time = System.currentTimeMillis();
+        long start_time = System.currentTimeMillis(); // get start time of the processs
         int length = fileNames.length;
         int count , sum = 0;
         try{
-        for (int i = 0; i <length; i++)
+        for (int i = 0; i <length; i++) // loop over the array and count the number of lines in every file.
            {
                count = 0;
-               File f1 = new File(fileNames[i]);
-               Scanner sc = new Scanner(f1);
+               File f1 = new File(fileNames[i]); // define file according to the path(name).
+               Scanner sc = new Scanner(f1);     // using scanner to go over the lines.
                while(sc.hasNextLine())
                {
                    sc.nextLine();
                    count ++;
                }
                //System.out.println("num of lines: "+ count);
-               sum = sum + count;
+               sum = sum + count;                // sum all the files num of lines.
                //System.out.println(sum);
-
            }
-
         }
         catch (Exception e)
         {
            // throw new RuntimeException(e);
-            System.err.println("asasass");
+            System.err.println("error");
         }
         System.out.println("total sum:"+sum);
 
-        long finish_time = System.currentTimeMillis();
-        long total_time = finish_time -start_time;
+        long finish_time = System.currentTimeMillis(); // get finish time of the proccess.
+        long total_time = finish_time -start_time;     // calculate the total time.
      //   System.out.println("total time for method 2: " + total_time + "ms");
         return sum;
     }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * this method returns the total sum of the files lines using Threads.
+     * @param fileNames - array of the files names.
+     * @return - the num of lines in the files created in the createTextFiles method.
+     * @throws InterruptedException
+     */
     public static int getNumOfLinesThreads(String[] fileNames) throws InterruptedException {
-        long start_time = System.currentTimeMillis();
-        GetLineThread[] threadArray = new GetLineThread[fileNames.length];
+        long start_time = System.currentTimeMillis();   // get start time of the proccess.
+        GetLineThread[] threadArray = new GetLineThread[fileNames.length]; // create thread array in size of num of files
         int sum = 0;
-        for (int i = 0 ; i < fileNames.length ; i++)
+        for (int i = 0 ; i < fileNames.length ; i++)// looping over the files
         {
-            GetLineThread t1 = new GetLineThread(fileNames[i]);
+            GetLineThread t1 = new GetLineThread(fileNames[i]); //
             threadArray [i] = t1;
             try
             {
@@ -134,7 +151,13 @@ public class Ex2_1
         return sum;
 
     }
-    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * this method returns the total sum of the files lines using Threadpool.
+     * @param fileNames - array of the files names.
+     * @return  - the num of lines in the files created in the createTextFiles method.     *
+     */
     public static int getNumOfLinesThreadPool(String[] fileNames)  {
         long start_time = System.currentTimeMillis();
 

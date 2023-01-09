@@ -8,52 +8,77 @@ import java.util.concurrent.*;
 import static java.lang.Runtime.getRuntime;
 import static java.util.concurrent.Executors.newCachedThreadPool;
 
-public class CustomExecutor<T>
+public class CustomExecutor<T> extends ThreadPoolExecutor
 {
     //public static PriorityBlockingQueue<Task> p = new PriorityBlockingQueue<>();
 
-    static int min_num_of_threads = getRuntime().availableProcessors()/2;
-    int max_num_of_threads = getRuntime().availableProcessors() - 1;
-    //ExecutorService executor = Executors.newFixedThreadPool();
-    public static PriorityBlockingQueue<Runnable> pq = new PriorityBlockingQueue<>( min_num_of_threads, new Task());//(t1 , t2 ) -> ((Task) t1).compareTo((Task)t2));
+     int min_num_of_threads = getRuntime().availableProcessors()/2;
+     int max_num_of_threads = getRuntime().availableProcessors()/2;
+     public  PriorityBlockingQueue<Runnable> pq = new PriorityBlockingQueue<>( min_num_of_threads,(t1 , t2 ) -> ((Task) t1).compareTo((Task)t2));
+
+     int [] priority_arr = new int[10];
 
 
+   // ThreadPoolExecutor pool = new ThreadPoolExecutor(min_num_of_threads,max_num_of_threads,300, TimeUnit.MILLISECONDS,pq);
+  //  int max_priority;
 
-    ThreadPoolExecutor pool = new ThreadPoolExecutor(min_num_of_threads,max_num_of_threads,300, TimeUnit.MILLISECONDS,pq);
-    TaskType max_priority;
+    public CustomExecutor()
+    {
+        super(getRuntime().availableProcessors()/2,getRuntime().availableProcessors()/2,300,
+                TimeUnit.MILLISECONDS,new PriorityBlockingQueue<>(  getRuntime().availableProcessors()/2,(t1 , t2 ) -> ((Task) t1).compareTo((Task)t2)));
 
+    }
     public Future<T> submit (Task t)
     {
-        return pool.submit(t);
+        priority_arr[t.tasktype.getPriorityValue()]++;
+        return super.submit(t);
     }
 
-    public Future<T> addTask (Task t , TaskType taskType)
+    public  Future<T> submit (Callable t , TaskType taskType)
     {
-        return submit(Task.createTask(t,taskType));
+        Callable task = Task.createTask(t,taskType);
+        return submit(task);
     }
-    public Future<T> addTask (Task t)
+    public Future<T> submit (Callable t)
     {
-        return submit(Task.createTask(t));
+        Callable task = Task.createTask(t);
+        return submit(task);
     }
 
-//    public void queqe(Task t)
+    public int getCurrentMax()
+    {
+        for (int i = priority_arr.length; i <= 0  ; i++)
+        {
+           if(priority_arr[i] != 0 ) return priority_arr[i];
+
+        } return 0;
+    }
+
+    public void gracefullyTerminate()
+    {
+        super.shutdown();
+    }
+
+//    @Override
+//    protected void afterExecute(Runnable r, Throwable t)
 //    {
-//        p.add(t);
+//        int priority = ((Task)r).tasktype.getPriorityValue();
+//        priority_arr[priority]--;
 //    }
-//public int compare(Task<T> o1 , Task<T> o2)
-//{
-//    if (o1.tasktype.getPriorityValue() > o2.tasktype.getPriorityValue())
-//    {
-//        return 1;
-//    }
-//    else if (o1.tasktype.getPriorityValue() == o2.tasktype.getPriorityValue())
-//    {
-//        return 0;
-//    }
-//    else
-//    {
-//        return -1;
-//    }
+
+    @Override
+    protected void beforeExecute(Thread t, Runnable r)
+    {
+        int priority = ((Task)r).tasktype.getPriorityValue();
+        priority_arr[priority]--;
+    }
+
+    @Override
+    protected <T> RunnableFuture<T> newTaskFor(Callable<T> callable)
+    {
+            TaskType type = TaskType.OTHER;
+            return new FutureTask<T>(Task.createTask(callable,type));
+    }
 
 }
 
