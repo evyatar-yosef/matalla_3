@@ -111,11 +111,11 @@ public class Ex2_1
         int sum = 0;
         for (int i = 0 ; i < fileNames.length ; i++)// looping over the files
         {
-            GetLineThread t1 = new GetLineThread(fileNames[i]); //
-            threadArray [i] = t1;
+            GetLineThread t1 = new GetLineThread(fileNames[i]); //create a new GetLineThread and pass it the file name.
+            threadArray [i] = t1; // insert the GetLineThread object to the Threas array.
             try
             {
-             t1.start();
+             t1.start(); // execute the current Thread.
 
                System.out.println("thread num :"+ i);
             }
@@ -124,11 +124,7 @@ public class Ex2_1
                 System.err.println("eroor in start");
                 throw new RuntimeException(e);
             }
-
-           // System.out.println("sum: "+ sum);
         }
-
-        //  System.out.println(sum);
 
         for (int i = 0 ; i < threadArray.length ; i++)
         {
@@ -145,8 +141,8 @@ public class Ex2_1
              }
         }
         System.out.println("sum = "+sum);
-        long finish_time = System.currentTimeMillis();
-        long total_time = finish_time - start_time;
+        long finish_time = System.currentTimeMillis(); // get finish time of the proccess.
+        long total_time = finish_time - start_time;    // calculate the total time.
         System.out.println("total time for method 3: " + total_time + "ms");
         return sum;
 
@@ -161,16 +157,16 @@ public class Ex2_1
     public static int getNumOfLinesThreadPool(String[] fileNames)  {
         long start_time = System.currentTimeMillis();
 
-        ExecutorService executor = Executors.newFixedThreadPool(fileNames.length);//create thread pool
-        List<Future<Integer>> Threadlist = new ArrayList<Future<Integer>>();
+        ExecutorService executor = Executors.newFixedThreadPool(fileNames.length); //create thread pool
+        List<Future<Integer>> Threadlist = new ArrayList<Future<Integer>>(); // create a future list.
         int sum = 0;
         for (int i = 0; i < fileNames.length ; i++)
         {
             try
             {
-                Callable<Integer> t1  = new GetLinePoolThread(fileNames[i]);
-                Future<Integer> future  =  executor.submit(t1);
-                Threadlist.add((Future<Integer>) future);
+                Callable<Integer> t1  = new GetLinePoolThread(fileNames[i]); // create callable object using GetLinePoolThread
+                Future<Integer> future  =  executor.submit(t1); // sumbiting the task into future list
+                Threadlist.add((Future<Integer>) future); // add the result to the threadlist
             }
             catch (Exception e)
             {
@@ -181,14 +177,14 @@ public class Ex2_1
 
       //  List<Future<Integer>> future = executor.invokeAll(Threadlist);
 
-        for(Future<Integer> fut : Threadlist)
+        for(Future<Integer> fut : Threadlist) // loop over Threadlist
         {
             try
             {
-                int count = fut.get();
+                int count = fut.get(); // get the results of the task from the threadlist.
                // System.out.println("num of lines: "+ count);
 
-                sum = sum + count;
+                sum = sum + count; // sum the num of lines from the textfile
             }
             catch (ExecutionException | InterruptedException e)
             {
@@ -198,8 +194,8 @@ public class Ex2_1
         }
         System.out.println("sum: "+ sum);
         executor.shutdown();
-        long finish_time = System.currentTimeMillis();
-        long total_time = (finish_time -start_time) ;
+        long finish_time = System.currentTimeMillis(); // get finish time of the proccess.
+        long total_time = (finish_time -start_time) ;  //  calculate the total time.
         System.out.println("total time for method 4: " + total_time + "ms");
 
         return sum;

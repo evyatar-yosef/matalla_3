@@ -17,14 +17,17 @@ public class GetLineThread extends Thread
         return numOfLines;
     }
 
+    /**
+     * this run method count number of lines in text file.
+     */
     public void run()
     {
-        int count = 0;
-        File f1 = new File(path);
+        int count = 0; //int to count the number of lines.
+        File f1 = new File(path); // create new file according to the file path
         Scanner sc = null;
         try
         {
-            sc = new Scanner(f1);
+            sc = new Scanner(f1);  // create scanner to go ovr the text lines.
         }
         catch (FileNotFoundException e)
         {
@@ -37,15 +40,6 @@ public class GetLineThread extends Thread
             count ++;
         }
         numOfLines = count;
-        //System.out.println("num of lines: "+ count);
-        //return count;
-
     }
 
-
-//    public int start() {
-//        int x =call();
-//        return x;
-//    }
 }
-
