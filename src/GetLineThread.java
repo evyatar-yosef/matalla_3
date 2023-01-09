@@ -41,5 +41,4 @@ public class GetLineThread extends Thread
         }
         numOfLines = count;
     }
-
 }

@@ -25,7 +25,7 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
     public CustomExecutor()
     {
         super(getRuntime().availableProcessors()/2,getRuntime().availableProcessors()/2,300,
-                TimeUnit.MILLISECONDS,new PriorityBlockingQueue<>(  getRuntime().availableProcessors()/2,(t1 , t2 ) -> ((Task) t1).compareTo((Task)t2)));
+                TimeUnit.MILLISECONDS,new PriorityBlockingQueue<>(  getRuntime().availableProcessors()/2,(t1 , t2 ) -> ((AdapterToTask) t1).compareTo((AdapterToTask) t2)));
 
     }
     public Future<T> submit (Task t)
@@ -42,14 +42,17 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
     public Future<T> submit (Callable t)
     {
         Callable task = Task.createTask(t);
-        return submit(task);
+        return submit((Task)task);
     }
 
     public int getCurrentMax()
     {
-        for (int i = priority_arr.length; i <= 0  ; i++)
+        for (int i = priority_arr.length - 1; i > 0  ; i--)
         {
-           if(priority_arr[i] != 0 ) return priority_arr[i];
+           if(priority_arr[i] != 0 )
+           {
+               return i;
+           }
 
         } return 0;
     }
@@ -69,15 +72,17 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
     @Override
     protected void beforeExecute(Thread t, Runnable r)
     {
-        int priority = ((Task)r).tasktype.getPriorityValue();
-        priority_arr[priority]--;
+        AdapterToTask adapt = AdapterToTask.class.cast(r);
+        Callable call = adapt.getCall();
+        Task task = (Task) call;
+
+        priority_arr[task.tasktype.getPriorityValue()]--;
     }
 
     @Override
     protected <T> RunnableFuture<T> newTaskFor(Callable<T> callable)
     {
-            TaskType type = TaskType.OTHER;
-            return new FutureTask<T>(Task.createTask(callable,type));
+            return new AdapterToTask(callable);
     }
 
 }

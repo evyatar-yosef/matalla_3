@@ -4,6 +4,8 @@ import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 import java.util.concurrent.*;
 
+import static java.lang.Thread.sleep;
+
 public class Tests {
     public static final Logger logger =  LoggerFactory.getLogger(Tests.class);
 
@@ -31,8 +33,11 @@ public class Tests {
         };
         Callable<String> callable2 = ()-> {
             StringBuilder sb = new StringBuilder("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+            sleep(1000);
             return sb.reverse().toString();
         };
+
+
 
         Future priceTask = customExecutor.submit(()-> {
             return 1000 * Math.pow(1.02, 5);
@@ -49,7 +54,7 @@ public class Tests {
 
         logger.info(()-> "Reversed String = " + reversed);
         logger.info(()->String.valueOf("Total Price = " + totalPrice));
-        logger.info(()-> "Current maximum priority = ");
+        logger.info(()-> "Current maximum priority = " + customExecutor.getCurrentMax());
 
         customExecutor.getCurrentMax();
         customExecutor.gracefullyTerminate();
