@@ -1,6 +1,5 @@
-package partb;
+package part_b;
 
-import java.util.Comparator;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 

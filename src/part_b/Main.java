@@ -1,8 +1,8 @@
-package partb;
+package part_b;
 
 import java.util.concurrent.Callable;
 
-import static partb.TaskType.*;
+import static part_b.TaskType.*;
 
 public class Main {
 public static void main(String[] args) throws Exception {

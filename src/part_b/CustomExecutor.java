@@ -1,8 +1,5 @@
-package partb;
+package part_b;
 
-import javax.swing.text.html.HTMLDocument;
-import java.util.Comparator;
-import java.util.PriorityQueue;
 import java.util.concurrent.*;
 
 import static java.lang.Runtime.getRuntime;

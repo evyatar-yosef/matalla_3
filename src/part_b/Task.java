@@ -1,7 +1,6 @@
-package partb;
+package part_b;
 
 import java.util.concurrent.Callable;
-import java.util.concurrent.*;
 
 public class Task <T>  implements Callable<T>, Comparable<Task>
 {
