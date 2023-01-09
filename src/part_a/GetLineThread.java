@@ -1,3 +1,5 @@
+package part_a;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

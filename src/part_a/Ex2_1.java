@@ -1,3 +1,5 @@
+package part_a;
+
 import java.io.*;
 //import java.io.FileWriter;
 //import java.io.IOException;
@@ -111,8 +113,8 @@ public class Ex2_1
         int sum = 0;
         for (int i = 0 ; i < fileNames.length ; i++)// looping over the files
         {
-            GetLineThread t1 = new GetLineThread(fileNames[i]); //create a new GetLineThread and pass it the file name.
-            threadArray [i] = t1; // insert the GetLineThread object to the Threas array.
+            GetLineThread t1 = new GetLineThread(fileNames[i]); //create a new part_a.GetLineThread and pass it the file name.
+            threadArray [i] = t1; // insert the part_a.GetLineThread object to the Threas array.
             try
             {
              t1.start(); // execute the current Thread.
@@ -164,7 +166,7 @@ public class Ex2_1
         {
             try
             {
-                Callable<Integer> t1  = new GetLinePoolThread(fileNames[i]); // create callable object using GetLinePoolThread
+                Callable<Integer> t1  = new GetLinePoolThread(fileNames[i]); // create callable object using part_a.GetLinePoolThread
                 Future<Integer> future  =  executor.submit(t1); // sumbiting the task into future list
                 Threadlist.add((Future<Integer>) future); // add the result to the threadlist
             }
