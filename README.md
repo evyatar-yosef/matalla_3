@@ -21,6 +21,9 @@ the method use GetLinePoolThread that implements Callable interface and implemen
 
 ## Comparison of times:
 <img width="425" alt="צילום מסך 2023-01-09 212819" src="https://user-images.githubusercontent.com/117945522/211394406-9abc1383-91d0-42a0-8c02-5a11129f21d0.png">
+we can see that the methods getNumOfLinesThreads and getNumOfLinesThreadPool got almost the same execution time and the method  getNumOfLines took much more time, There could be several reasons for this: first of all the reason why getNumOfLines is slower
+than the others is because
+
 
 
 
