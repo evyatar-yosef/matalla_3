@@ -21,6 +21,8 @@ the method use GetLinePoolThread that implements Callable interface and implemen
 
 ## Comparison of times:
 <img width="385" alt="זמנים 3" src="https://user-images.githubusercontent.com/117945522/211626154-943a0bc0-c518-4d5c-9b5c-6263d9a92a14.png">
+** for this comparison we create 1000 files when seed = 200 , bound = 100000.
+
 we can see that the methods getNumOfLinesThreads and getNumOfLinesThreadPool got almost the same execution time and the method  getNumOfLines took much more time, There could be several reasons for this: the reason why getNumOfLines is slower
 than the others is could be because when using a single thread, all the operations within that task must be completed sequentially, one after the other, On the other hand, when a task is executed using multiple threads, the operations within that task can be divided up and executed in parallel.
 getNumOfLinesThreads and getNumOfLinesThreadPool are about the same time that could happen If the tasks are relatively short-lived and don't involve a lot of blocking,then the overhead of creating and managing threads may not have a significant impact on performance. In this case, using a thread pool might not provide much of a performance boost over using individual threads.
