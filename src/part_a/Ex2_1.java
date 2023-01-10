@@ -91,11 +91,11 @@ public class Ex2_1
            // throw new RuntimeException(e);
             System.err.println("error");
         }
-        System.out.println("total sum:"+sum);
+        System.out.println("sum 2:"+sum);
 
         long finish_time = System.currentTimeMillis(); // get finish time of the proccess.
         long total_time = finish_time -start_time;     // calculate the total time.
-     //   System.out.println("total time for method 2: " + total_time + "ms");
+        System.out.println("total time for method 2: " + total_time + "ms");
         return sum;
     }
 
@@ -119,7 +119,7 @@ public class Ex2_1
             {
              t1.start(); // execute the current Thread.
 
-               System.out.println("thread num :"+ i);
+            //   System.out.println("thread num :"+ i);
             }
             catch (Exception e)
             {
@@ -132,9 +132,9 @@ public class Ex2_1
         {
              try
              {
-               //  threadArray[i].join();
-             //    sum = sum + threadArray[i].getlines();
-                 System.out.println("sum: "+ sum);
+                 threadArray[i].join();
+               sum = sum + threadArray[i].getlines();
+               //  System.out.println("sum: "+ sum);
 
              }
              catch (Exception e)
@@ -142,7 +142,7 @@ public class Ex2_1
                  System.err.println("eroor in join");
              }
         }
-        System.out.println("sum = "+sum);
+        System.out.println("sum 3 = "+sum);
         long finish_time = System.currentTimeMillis(); // get finish time of the proccess.
         long total_time = finish_time - start_time;    // calculate the total time.
         System.out.println("total time for method 3: " + total_time + "ms");
