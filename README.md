@@ -36,7 +36,17 @@ the performance difference between using threads and a thread pool will depend o
 
 ## part_b:
 ## general:
-in this part we asked to make a new type that provides an asynchronous task with priority and a ThreadPool type that supports tasks priority.
+in this part we asked to make a new type that provides an asynchronous task with priority and a ThreadPool type that supports tasks priority. in this class we got several classes:
+### TaskType class:
+is an enum we recieve with the assignment that describes the task type (computational/O/I access/unknown) and its priority based on the value The number of the task type.
+### Task class:
+this class represents an operation that can be run asynchronously and can return a value of some type.
+### CustomExecutor:
+Represents a new type of ThreadPool that supports a queue of priority tasks (all
+the task in a queue is of type Task.) CustomExecutor will execute the tasks according to their priority.
+### AdapterToTask:
+this class wrapping a Callable object with FutureTask and adding ability to sort it based on the priority of the task.
+the class extends FutureTask and implements Comparable<AdapterToTask>,Runnable.( use adapter design pattern).
 
 
 
