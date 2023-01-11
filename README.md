@@ -47,6 +47,10 @@ the task in a queue is of type Task.) CustomExecutor will execute the tasks acco
 ### AdapterToTask:
 this class wrapping a Callable object with FutureTask and adding ability to sort it based on the priority of the task.
 the class extends FutureTask and implements Comparable<AdapterToTask>,Runnable.( use adapter design pattern).
+ 
+ ### diagram:
+ <img width="385" alt="image" src="https://user-images.githubusercontent.com/117945522/211857787-90bf91c5-2967-4eff-a0a0-bb5002833ea2.png">
+
 
 
 
