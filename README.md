@@ -31,7 +31,7 @@ Additionally, it also can be depends on how we implement our thread pool.
 the performance difference between using threads and a thread pool will depend on the nature of the tasks we executing, the number of threads we using, and how we implement our thread pool.
 
 ## diagram:
-![diagram part a task 3](https://user-images.githubusercontent.com/117945522/211389290-fcaabfea-f3c3-4c91-9819-e0709a33d43d.png)
+<img width="429" alt="דיאגרמה חלק א" src="https://user-images.githubusercontent.com/117945522/211858812-cda442a8-6a80-46f7-9ed9-9140fba86c45.png">
 
 
 ## part_b:
