@@ -21,7 +21,7 @@ public class GetLinePoolThread implements Callable<Integer>
      */
     @Override
     public Integer call() throws Exception {
-        int count = 0; // int to count the number of lines.
+        int count = 0;  //  int to count the number of lines.
         File f1 = new File(path); // create new file according to the file path
         Scanner sc = null;
         try {
@@ -34,8 +34,6 @@ public class GetLinePoolThread implements Callable<Integer>
             sc.nextLine();
             count++;
         }
-        //System.out.println("num of lines: "+ count);
-
         return count;
     }
 }

@@ -3,19 +3,19 @@ package part_b;
 import java.util.concurrent.Callable;
 
 /**
- * class that represent a task to execute, implements Callable and Comparable interfaces
+ * class that represent a task to execute that returned some type, implements Callable and Comparable interfaces
  * @param <T>
  */
 public class Task <T>  implements Callable<T>, Comparable<Task>
 {
     protected  TaskType tasktype; // object thar represent the priority of the task(by numerical value).
 
-    protected Callable<T> call; // object that return value after execute task.
+    protected Callable<T> call;   // object that return value after execute task.
 
     /**\
      * constructor for create Task object recieve Callable,TaskType
      * inner constructor(not visible to the user).
-      * @param c - callable object
+     * @param c - callable object
      * @param tasktype - type of the task
      */
     private Task(Callable<T> c,TaskType tasktype)

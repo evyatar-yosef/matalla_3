@@ -38,8 +38,8 @@ public class GetLineThread extends Thread
 
         while(sc.hasNextLine())
         {
-            sc.nextLine();
-            count ++;
+           count ++;
+           sc.nextLine();
         }
         numOfLines = count;
     }
