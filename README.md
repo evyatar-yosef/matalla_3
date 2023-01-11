@@ -34,6 +34,10 @@ the performance difference between using threads and a thread pool will depend o
 ![diagram part a task 3](https://user-images.githubusercontent.com/117945522/211389290-fcaabfea-f3c3-4c91-9819-e0709a33d43d.png)
 
 
+## part_b:
+## general:
+in this part we asked to make a new type that provides an asynchronous task with priority and a ThreadPool type that supports tasks priority.
+
 
 
 
