@@ -193,9 +193,3 @@ public class Ex2_1
         return sum;
     }}
 
-    /**
-     * method for delete the crated files from the directory.
-     */
-
-
-
