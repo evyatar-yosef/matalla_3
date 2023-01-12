@@ -2,15 +2,8 @@ package part_a;
 
 import java.io.*;
 import java.io.File;
-
-//import java.io.FileWriter;
-//import java.io.IOException;
-//import java.io.PrintWriter;
 import java.util.*;
 import java.util.concurrent.*;
-//import java.util.concurrent.ExecutorService;
-//import java.util.concurrent.Executors;
-//import java.util.concurrent.Future;
 
 public class Ex2_1
 {
@@ -83,14 +76,11 @@ public class Ex2_1
                    sc.nextLine();
                    count ++;
                }
-               //System.out.println("num of lines: "+ count);
                sum = sum + count;                // sum all the files num of lines.
-               //System.out.println(sum);
            }
         }
         catch (Exception e)
         {
-           // throw new RuntimeException(e);
             System.err.println("error");
         }
         System.out.println("sum 2 :"+sum);
@@ -98,7 +88,6 @@ public class Ex2_1
         long finish_time = System.currentTimeMillis(); // get finish time of the proccess.
         long total_time = finish_time -start_time;     // calculate the total time.
         System.out.println("total time for method 2: " + total_time + "ms");
-      //  DeleteFiles();
         return sum;
 
     }
@@ -124,7 +113,6 @@ public class Ex2_1
             {
              t1.start(); // execute the current Thread.
 
-            //   System.out.println("thread num :"+ i);
             }
             catch (Exception e)
             {
@@ -139,7 +127,6 @@ public class Ex2_1
              {
                  threadArray[i].join();
                sum = sum + threadArray[i].getlines();
-               //  System.out.println("sum: "+ sum);
 
              }
              catch (Exception e)
@@ -151,7 +138,6 @@ public class Ex2_1
         long finish_time = System.currentTimeMillis(); // get finish time of the proccess.
         long total_time = finish_time - start_time;    // calculate the total time.
         System.out.println("total time for method 3: " + total_time + "ms");
-    //    DeleteFiles();
         return sum;
 
     }
@@ -184,14 +170,12 @@ public class Ex2_1
 
         }
 
-      //  List<Future<Integer>> future = executor.invokeAll(Threadlist);
 
         for(Future<Integer> fut : Threadlist) // loop over Threadlist
         {
             try
             {
                 int count = fut.get(); // get the results of the task from the threadlist.
-               // System.out.println("num of lines: "+ count);
 
                 sum = sum + count; // sum the num of lines from the textfile
             }
@@ -206,25 +190,12 @@ public class Ex2_1
         long finish_time = System.currentTimeMillis(); // get finish time of the proccess.
         long total_time = (finish_time -start_time) ;  //  calculate the total time.
         System.out.println("total time for method 4: " + total_time + "ms");
-      //  DeleteFiles();
         return sum;
     }}
 
     /**
      * method for delete the crated files from the directory.
      */
-//    public static void DeleteFiles()
-//    {
-//        String directory = "C:\\Users\\97252\\Desktop\\classes b\\oop\\matala_3";
-//        File dir = new File(directory);
-//        for (File file : dir.listFiles()) // looping over the files.
-//        {
-//            if (!file.isDirectory())
-//            {
-//                file.delete(); // delete current file.
-//            }
-//        }
-//    }
-//    }
+
 
 
