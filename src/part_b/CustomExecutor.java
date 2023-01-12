@@ -48,8 +48,9 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
      */
     public  Future<T> submit (Callable t , TaskType taskType)
     {
+
         Callable task = Task.createTask(t,taskType);
-        return submit(task);
+        return submit((Task)task);
     }
 
     /**
@@ -60,7 +61,7 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
     public Future<T> submit (Callable t)
     {
         Callable task = Task.createTask(t); // use createTask to create a callable task.
-        return submit((Task)task); //submit the task to the threadpool and execute it and then return a future.
+        return submit((Task)task); // Task submit the task type to the threadpool and execute it and then return a future.
     }
 
     /**
@@ -69,7 +70,7 @@ public class CustomExecutor<T> extends ThreadPoolExecutor
      */
     public int getCurrentMax()
     {
-        for (int i = priority_arr.length - 1; i > 0  ; i--)
+        for (int i = 0; i <10 ; i++)
         {
            if(priority_arr [i] != 0 )
            {

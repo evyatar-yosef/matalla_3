@@ -98,7 +98,7 @@ public class Ex2_1
         long finish_time = System.currentTimeMillis(); // get finish time of the proccess.
         long total_time = finish_time -start_time;     // calculate the total time.
         System.out.println("total time for method 2: " + total_time + "ms");
-        DeleteFiles();
+      //  DeleteFiles();
         return sum;
 
     }
@@ -151,7 +151,7 @@ public class Ex2_1
         long finish_time = System.currentTimeMillis(); // get finish time of the proccess.
         long total_time = finish_time - start_time;    // calculate the total time.
         System.out.println("total time for method 3: " + total_time + "ms");
-        DeleteFiles();
+    //    DeleteFiles();
         return sum;
 
     }
@@ -206,25 +206,25 @@ public class Ex2_1
         long finish_time = System.currentTimeMillis(); // get finish time of the proccess.
         long total_time = (finish_time -start_time) ;  //  calculate the total time.
         System.out.println("total time for method 4: " + total_time + "ms");
-        DeleteFiles();
+      //  DeleteFiles();
         return sum;
-    }
+    }}
 
     /**
      * method for delete the crated files from the directory.
      */
-    public static void DeleteFiles()
-    {
-        String directory = "C:\\Users\\97252\\Desktop\\classes b\\oop\\matala_3";
-        File dir = new File(directory);
-        for (File file : dir.listFiles()) // looping over the files.
-        {
-            if (!file.isDirectory())
-            {
-                file.delete(); // delete current file.
-            }
-        }
-    }
-    }
+//    public static void DeleteFiles()
+//    {
+//        String directory = "C:\\Users\\97252\\Desktop\\classes b\\oop\\matala_3";
+//        File dir = new File(directory);
+//        for (File file : dir.listFiles()) // looping over the files.
+//        {
+//            if (!file.isDirectory())
+//            {
+//                file.delete(); // delete current file.
+//            }
+//        }
+//    }
+//    }
 
 
