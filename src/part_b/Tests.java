@@ -124,8 +124,6 @@ public class Tests {
         Future sumTask4 = customExecutor.submit(task,TaskType.IO);
         Future reverseTask6 = customExecutor.submit(callable2, TaskType.OTHER);//1
         Future sumTask5 = customExecutor.submit(task,TaskType.COMPUTATIONAL);
-        logger.info(()-> "Current maximum priority = " + customExecutor.getCurrentMax());
-
         Future sleep = customExecutor.submit(sleep2,TaskType.OTHER);//2
         logger.info(()-> "Current maximum priority = " + customExecutor.getCurrentMax());
 
